@@ -7,7 +7,6 @@ import { toast } from 'react-toastify';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
-
   function onChange(e) {
     setEmail(e.target.value);
   }
@@ -16,10 +15,10 @@ export default function ForgotPassword() {
     e.preventDefault();
     try {
       const auth = getAuth()
-      const resetUser = sendPasswordResetEmail(auth, email);
+      await sendPasswordResetEmail(auth, email);
       toast.success("Reset Link Sent Successfully.")
     } catch (error) {
-      toast.error("Something went Wrong while sending reset link");      
+      toast.error("Something went Wrong.");      
     }
   }
 
